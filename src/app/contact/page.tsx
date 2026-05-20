@@ -139,7 +139,7 @@ export default function ContactPage() {
                 <p className="text-gray-400 text-sm mb-4">Find me on</p>
                 <div className="flex gap-3">
                   <a
-                    href="https://linkedin.com/in/sidhartha-sahoo"
+                    href="https://www.linkedin.com/in/sidhartha-sahoo-creative"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:bg-[#0077b5]/20 hover:border-[#0077b5]/40 transition-all text-sm"

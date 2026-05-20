@@ -17,7 +17,7 @@ const navItems = [
   { name: "Contact",    href: "/#contact",    section: "contact"    },
 ];
 
-const RESUME_URL = "https://drive.google.com/file/d/1G72w0az3ljuLP0NnSaXy2B54BWA6HRDu/view";
+const RESUME_URL = "https://drive.google.com/file/d/1Gfzg6d8ZYBSxL9EptcuhQGd7yzi2PXDV/view?usp=sharing";
 
 // Ordered list of section IDs on the homepage
 const SECTIONS = ["hero", "services", "portfolio", "experience", "skills", "education", "contact"];

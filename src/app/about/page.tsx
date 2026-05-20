@@ -235,7 +235,7 @@ export default function AboutPage() {
               header={
                 <div className="flex flex-1 h-full w-full items-center justify-around px-4 bg-gradient-to-r from-neutral-900 to-neutral-800 rounded-xl border border-white/5 py-4 md:py-0 min-h-[5rem]">
                   <a
-                    href="https://linkedin.com/in/sidhartha-sahoo"
+                    href="https://www.linkedin.com/in/sidhartha-sahoo-creative"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-3 bg-white/5 rounded-full hover:bg-[#0077b5] hover:scale-110 transition-all duration-300 text-white"

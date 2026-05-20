@@ -10,7 +10,7 @@ export default function Footer() {
   const socialLinks = [
     {
       name: "LinkedIn",
-      href: "https://linkedin.com/in/sidhartha-sahoo",
+      href: "https://www.linkedin.com/in/sidhartha-sahoo-creative",
       icon: Linkedin,
     },
     {

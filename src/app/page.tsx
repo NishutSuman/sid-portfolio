@@ -69,7 +69,7 @@ const education = [
     period: "2024 – 2026",
     degree: "Masters in Computer Application (MCA)",
     institution: "College of IT and Management, BPUT",
-    status: "Ongoing",
+    status: "Completed",
     accent: "from-blue-400 to-purple-500",
     icon: Monitor,
     iconColor: "text-blue-400",
@@ -494,7 +494,7 @@ export default function HomePage() {
                   ))}
                 </div>
                 <div className="mt-5 pt-5 border-t border-white/10 flex gap-3">
-                  <a href="https://linkedin.com/in/sidhartha-sahoo" target="_blank" rel="noopener noreferrer"
+                  <a href="https://www.linkedin.com/in/sidhartha-sahoo-creative" target="_blank" rel="noopener noreferrer"
                     className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:bg-[#0077b5]/20 hover:border-[#0077b5]/40 transition-all text-xs">
                     <Linkedin size={14} /> LinkedIn
                   </a>
