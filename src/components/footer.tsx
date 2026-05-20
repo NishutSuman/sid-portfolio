@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Linkedin, Mail, Instagram, Phone, MapPin } from "lucide-react";
+import BrandLogo from "./brand-logo";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -35,8 +36,8 @@ export default function Footer() {
         <div className="grid md:grid-cols-3 gap-12">
           {/* Brand */}
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
-              Sidhartha Sahoo
+            <h3 className="leading-none">
+              <BrandLogo className="text-3xl" />
             </h3>
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
               Graphic Designer · Video Editor · Cinematographer, crafting brand identities,

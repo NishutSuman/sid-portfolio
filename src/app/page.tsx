@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { m, AnimatePresence } from "framer-motion";
+import { m } from "framer-motion";
 import Hero from "@/components/hero";
 import GlassmorphismCard from "@/components/glassmorphism-card";
 import { ExternalLink, Image as ImageIcon, Play, Briefcase, GraduationCap, ChevronRight, Mail, Phone, MapPin, Clock, Send, Instagram, Linkedin, Monitor, BookOpen } from "lucide-react";
@@ -109,8 +109,6 @@ function SectionDivider() {
 }
 
 export default function HomePage() {
-  const [portfolioTab, setPortfolioTab] = React.useState<"photos" | "videos">("photos");
-
   const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
@@ -180,142 +178,138 @@ export default function HomePage() {
         <SectionDivider />
         <div className="max-w-6xl mx-auto">
 
-          {/* Header + Toggle */}
-          <div className="flex flex-col items-center gap-6 mb-12">
-            <m.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
-              className="text-center">
-              <h2 className="text-4xl md:text-6xl font-bold mb-3 tracking-tight">
-                <span className="bg-gradient-to-r from-white via-blue-100 to-gray-400 bg-clip-text text-transparent">Selected Work</span>
-              </h2>
-              <p className="text-gray-400 text-base max-w-xl mx-auto font-light">
-                Design systems, campaigns, and films crafted with purpose.
-              </p>
-            </m.div>
+          {/* Section heading */}
+          <m.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
+            className="text-center mb-14">
+            <h2 className="text-4xl md:text-6xl font-bold mb-3 tracking-tight">
+              <span className="bg-gradient-to-r from-white via-blue-100 to-gray-400 bg-clip-text text-transparent">Selected Work</span>
+            </h2>
+            <p className="text-gray-400 text-base max-w-xl mx-auto font-light">
+              Design systems, campaigns, and films crafted with purpose.
+            </p>
+          </m.div>
 
-            {/* Animated tab toggle */}
-            <m.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
-              className="flex items-center gap-1 bg-white/[0.04] border border-white/10 rounded-full p-1">
-              {([
-                { key: "photos", label: "Photos", icon: ImageIcon },
-                { key: "videos", label: "Videos", icon: Play },
-              ] as const).map(({ key, label, icon: Icon }) => (
-                <button key={key} onClick={() => setPortfolioTab(key)}
-                  className="relative px-6 py-2 rounded-full text-sm font-semibold transition-colors duration-200 flex items-center gap-2">
-                  {portfolioTab === key && (
-                    <m.div layoutId="portfolio-pill"
-                      className="absolute inset-0 rounded-full bg-white/10 border border-white/20"
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.4 }} />
-                  )}
-                  <Icon size={14} className={`relative z-10 transition-colors duration-200 ${portfolioTab === key ? (key === "photos" ? "text-blue-400" : "text-purple-400") : "text-gray-500"}`} />
-                  <span className={`relative z-10 transition-colors duration-200 ${portfolioTab === key ? "text-white" : "text-gray-500"}`}>{label}</span>
-                </button>
-              ))}
+          {/* GRAPHICS subsection */}
+          <div className="mb-20">
+            <m.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
+              className="flex items-center gap-3 mb-6">
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500/20 to-blue-600/5 border border-blue-500/20 flex items-center justify-center shrink-0">
+                <ImageIcon size={16} className="text-blue-400" />
+              </div>
+              <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight">Graphics</h3>
             </m.div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {graphicsWork.map((item, i) => (
+                <m.div key={item.id}
+                  initial={{ opacity: 0, scale: 0.92 }} whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3, delay: i * 0.05 }}
+                  className="group relative aspect-square rounded-xl overflow-hidden border border-white/[0.08] bg-white/[0.02] cursor-pointer">
+                  {item.driveId ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={driveImageUrl(item.driveId)}
+                      alt={item.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      onError={(e) => {
+                        const el = e.currentTarget;
+                        el.style.display = "none";
+                        el.nextElementSibling?.removeAttribute("style");
+                      }}
+                    />
+                  ) : null}
+                  {/* Fallback always rendered, hidden when image loads */}
+                  <div className={`${item.driveId ? "absolute inset-0" : "w-full h-full"} flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-blue-900/30 to-purple-900/20`}
+                    style={item.driveId ? { display: "none" } : {}}>
+                    <ImageIcon size={22} className="text-blue-400/40" />
+                    <span className="text-[10px] text-white/30 text-center px-2 leading-tight">{item.title}</span>
+                  </div>
+                  {/* Hover overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3 pointer-events-none">
+                    <p className="text-white text-[11px] font-semibold leading-tight">{item.title}</p>
+                    <p className="text-blue-300 text-[10px] mt-0.5">{item.category}</p>
+                  </div>
+                </m.div>
+              ))}
+            </div>
           </div>
 
-          {/* Animated content */}
-          <AnimatePresence mode="wait">
-            {portfolioTab === "photos" ? (
-              <m.div key="photos"
-                initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 30 }}
-                transition={{ duration: 0.35, ease: [0.25, 1, 0.5, 1] }}>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                  {graphicsWork.map((item, i) => (
-                    <m.div key={item.id}
-                      initial={{ opacity: 0, scale: 0.92 }} animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.3, delay: i * 0.05 }}
-                      className="group relative aspect-square rounded-xl overflow-hidden border border-white/[0.08] bg-white/[0.02] cursor-pointer">
-                      {item.driveId ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                          src={driveImageUrl(item.driveId)}
-                          alt={item.title}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                          onError={(e) => {
-                            const el = e.currentTarget;
-                            el.style.display = "none";
-                            el.nextElementSibling?.removeAttribute("style");
-                          }}
-                        />
-                      ) : null}
-                      {/* Fallback always rendered, hidden when image loads */}
-                      <div className={`${item.driveId ? "absolute inset-0" : "w-full h-full"} flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-blue-900/30 to-purple-900/20`}
-                        style={item.driveId ? { display: "none" } : {}}>
-                        <ImageIcon size={22} className="text-blue-400/40" />
-                        <span className="text-[10px] text-white/30 text-center px-2 leading-tight">{item.title}</span>
-                      </div>
-                      {/* Hover overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3 pointer-events-none">
-                        <p className="text-white text-[11px] font-semibold leading-tight">{item.title}</p>
-                        <p className="text-blue-300 text-[10px] mt-0.5">{item.category}</p>
-                      </div>
-                    </m.div>
-                  ))}
-                </div>
-                {portfolioLinks.graphicsFolder && (
-                  <a href={portfolioLinks.graphicsFolder} target="_blank" rel="noopener noreferrer"
-                    className="mt-5 flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-white/10 bg-white/[0.02] text-sm font-medium text-gray-400 hover:text-white hover:border-blue-500/40 hover:bg-blue-500/5 transition-all duration-300 group">
-                    View Full Design Portfolio
-                    <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                  </a>
-                )}
-              </m.div>
-            ) : (
-              <m.div key="videos"
-                initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }}
-                transition={{ duration: 0.35, ease: [0.25, 1, 0.5, 1] }}>
-                {(() => {
-                  const glows = [
-                    { bar: "from-violet-500 to-purple-600",  shadow: "shadow-[0_0_30px_rgba(139,92,246,0.25)]",  border: "border-violet-500/20"  },
-                    { bar: "from-blue-500 to-indigo-600",    shadow: "shadow-[0_0_30px_rgba(59,130,246,0.25)]",   border: "border-blue-500/20"    },
-                    { bar: "from-purple-500 to-pink-600",    shadow: "shadow-[0_0_30px_rgba(168,85,247,0.25)]",   border: "border-purple-500/20"  },
-                    { bar: "from-indigo-500 to-cyan-600",    shadow: "shadow-[0_0_30px_rgba(99,102,241,0.25)]",   border: "border-indigo-500/20"  },
-                  ];
-                  return (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                      {videoWork.map((item, i) => {
-                        const g = glows[i % glows.length];
-                        return (
-                          <m.div key={item.id}
-                            initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.35, delay: i * 0.08 }}
-                            className={`relative rounded-2xl overflow-hidden border ${g.border} ${g.shadow} bg-black`}>
-                            {/* Top glow bar */}
-                            <div className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r ${g.bar} z-10`} />
-                            <div className="relative w-full aspect-video">
-                              {item.driveId ? (
-                                <iframe
-                                  src={driveEmbedUrl(item.driveId)}
-                                  className="absolute inset-0 w-full h-full"
-                                  allow="autoplay; fullscreen"
-                                  allowFullScreen
-                                  title={item.title}
-                                  style={{ border: 0 }}
-                                />
-                              ) : (
-                                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-purple-900/20 to-indigo-900/20">
-                                  <div className="w-12 h-12 rounded-full bg-purple-600/30 border border-purple-500/30 flex items-center justify-center">
-                                    <Play size={18} className="text-purple-300/60 fill-purple-300/40 translate-x-0.5" />
-                                  </div>
-                                </div>
-                              )}
+          {/* VIDEOS subsection */}
+          <div>
+            <m.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
+              className="flex items-center gap-3 mb-6">
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-500/20 to-purple-600/5 border border-purple-500/20 flex items-center justify-center shrink-0">
+                <Play size={16} className="text-purple-400" />
+              </div>
+              <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight">Videos</h3>
+            </m.div>
+            {(() => {
+              const glows = [
+                { shadow: "shadow-[0_0_30px_rgba(139,92,246,0.25)]", border: "border-violet-500/20" },
+                { shadow: "shadow-[0_0_30px_rgba(59,130,246,0.25)]",  border: "border-blue-500/20"   },
+                { shadow: "shadow-[0_0_30px_rgba(168,85,247,0.25)]",  border: "border-purple-500/20" },
+                { shadow: "shadow-[0_0_30px_rgba(99,102,241,0.25)]",  border: "border-indigo-500/20" },
+              ];
+              return (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  {videoWork.map((item, i) => {
+                    const g = glows[i % glows.length];
+                    return (
+                      <m.div key={item.id}
+                        initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.35, delay: i * 0.08 }}
+                        className={`relative rounded-2xl overflow-hidden border ${g.border} ${g.shadow} bg-black`}>
+                        <div className="relative w-full aspect-video">
+                          {item.driveId ? (
+                            <iframe
+                              src={driveEmbedUrl(item.driveId)}
+                              className="absolute inset-0 w-full h-full"
+                              allow="autoplay; fullscreen"
+                              allowFullScreen
+                              title={item.title}
+                              style={{ border: 0 }}
+                            />
+                          ) : (
+                            <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-purple-900/20 to-indigo-900/20">
+                              <div className="w-12 h-12 rounded-full bg-purple-600/30 border border-purple-500/30 flex items-center justify-center">
+                                <Play size={18} className="text-purple-300/60 fill-purple-300/40 translate-x-0.5" />
+                              </div>
                             </div>
-                          </m.div>
-                        );
-                      })}
-                    </div>
-                  );
-                })()}
-                {portfolioLinks.videosFolder && (
-                  <a href={portfolioLinks.videosFolder} target="_blank" rel="noopener noreferrer"
-                    className="mt-5 flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-white/10 bg-white/[0.02] text-sm font-medium text-gray-400 hover:text-white hover:border-purple-500/40 hover:bg-purple-500/5 transition-all duration-300 group">
-                    View Full Video Portfolio
-                    <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                  </a>
-                )}
-              </m.div>
+                          )}
+                        </div>
+                      </m.div>
+                    );
+                  })}
+                </div>
+              );
+            })()}
+            {portfolioLinks.videosFolder && (
+              <a href={portfolioLinks.videosFolder} target="_blank" rel="noopener noreferrer"
+                className="mt-5 flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-white/10 bg-white/[0.02] text-sm font-medium text-gray-400 hover:text-white hover:border-purple-500/40 hover:bg-purple-500/5 transition-all duration-300 group">
+                View Full Video Portfolio
+                <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </a>
             )}
-          </AnimatePresence>
+          </div>
+
+          {/* Highlighted CTA — full portfolio */}
+          {portfolioLinks.graphicsFolder && (
+            <m.div
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mt-16 flex justify-center"
+            >
+              <a
+                href={portfolioLinks.graphicsFolder}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative inline-flex items-center gap-3 px-8 sm:px-10 py-4 rounded-full text-base font-bold text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 shadow-[0_0_30px_rgba(79,70,229,0.45)] hover:shadow-[0_0_45px_rgba(79,70,229,0.7)] hover:scale-[1.03] transition-all duration-300 ring-1 ring-white/15"
+              >
+                <span className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400/0 via-white/15 to-blue-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                Explore Full Portfolio on Drive
+                <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              </a>
+            </m.div>
+          )}
         </div>
       </section>
 

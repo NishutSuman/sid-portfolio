@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { m, AnimatePresence } from "framer-motion";
 import { Menu, X, Aperture } from "lucide-react";
 import { useLenis } from "lenis/react";
+import BrandLogo from "./brand-logo";
 
 const navItems = [
   { name: "Home",       href: "/",            section: "hero"       },
@@ -15,6 +16,8 @@ const navItems = [
   { name: "Education",  href: "/#education",  section: "education"  },
   { name: "Contact",    href: "/#contact",    section: "contact"    },
 ];
+
+const RESUME_URL = "https://drive.google.com/file/d/1G72w0az3ljuLP0NnSaXy2B54BWA6HRDu/view";
 
 // Ordered list of section IDs on the homepage
 const SECTIONS = ["hero", "services", "portfolio", "experience", "skills", "education", "contact"];
@@ -111,9 +114,7 @@ export default function Navbar() {
             }`}>
               <Aperture size={18} className="text-white" />
             </div>
-            <span className="text-lg font-bold tracking-tight text-white group-hover:text-blue-200 transition-colors">
-              Sidhartha
-            </span>
+            <BrandLogo className="text-lg group-hover:opacity-90 transition-opacity" />
           </Link>
 
           {/* Desktop nav */}
@@ -149,14 +150,16 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* Hire Me */}
+          {/* Resume */}
           <div className="hidden lg:block shrink-0">
-            <Link
-              href="/contact"
+            <a
+              href={RESUME_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-4 py-2 rounded-full text-sm font-semibold bg-blue-600 hover:bg-blue-500 text-white transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.45)]"
             >
-              Hire Me
-            </Link>
+              Resume
+            </a>
           </div>
 
           {/* Mobile toggle */}
@@ -209,13 +212,15 @@ export default function Navbar() {
                   transition={{ delay: navItems.length * 0.04 }}
                   className="pt-1"
                 >
-                  <Link
-                    href="/contact"
+                  <a
+                    href={RESUME_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     onClick={() => setIsOpen(false)}
                     className="block px-4 py-2.5 rounded-xl text-sm font-bold text-center bg-blue-600/20 border border-blue-500/30 text-blue-300 hover:bg-blue-600/30 transition-all"
                   >
-                    Hire Me
-                  </Link>
+                    Resume
+                  </a>
                 </m.div>
               </div>
             </m.div>

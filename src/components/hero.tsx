@@ -23,7 +23,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-16">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-32">
       {/* Background Ambience */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="absolute top-[35%] left-1/4 w-[900px] h-[700px] bg-blue-900/15 rounded-[100%] blur-[130px]" />
@@ -32,7 +32,7 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20">
 
           {/* ── LEFT: Profile Photo ── */}
           <m.div
@@ -88,7 +88,7 @@ export default function Hero() {
           </m.div>
 
           {/* ── RIGHT: Text Content ── */}
-          <div className="flex-1 text-center lg:text-left">
+          <div className="text-center lg:text-left max-w-xl">
             {/* Role tags */}
             <m.div
               initial={{ opacity: 0, y: 20 }}
