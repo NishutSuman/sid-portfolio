@@ -15,7 +15,7 @@ export default function Footer() {
     },
     {
       name: "Instagram",
-      href: "https://instagram.com/mastersidhh",
+      href: "https://www.instagram.com/pixa_arth01?igsh=MWpwbjA5MjB6Y3N3NQ==",
       icon: Instagram,
     },
     {

@@ -498,7 +498,7 @@ export default function HomePage() {
                     className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:bg-[#0077b5]/20 hover:border-[#0077b5]/40 transition-all text-xs">
                     <Linkedin size={14} /> LinkedIn
                   </a>
-                  <a href="https://instagram.com/mastersidhh" target="_blank" rel="noopener noreferrer"
+                  <a href="https://www.instagram.com/pixa_arth01?igsh=MWpwbjA5MjB6Y3N3NQ==" target="_blank" rel="noopener noreferrer"
                     className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:bg-pink-600/20 hover:border-pink-600/40 transition-all text-xs">
                     <Instagram size={14} /> Instagram
                   </a>

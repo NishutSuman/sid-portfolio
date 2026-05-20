@@ -243,7 +243,7 @@ export default function AboutPage() {
                     <Linkedin size={20} />
                   </a>
                   <a
-                    href="https://instagram.com/mastersidhh"
+                    href="https://www.instagram.com/pixa_arth01?igsh=MWpwbjA5MjB6Y3N3NQ=="
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-3 bg-white/5 rounded-full hover:bg-pink-600 hover:scale-110 transition-all duration-300 text-white"
