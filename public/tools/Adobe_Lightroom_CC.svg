@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 234">
+  <defs>
+    <linearGradient id="lr-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#001E36"/>
+      <stop offset="100%" style="stop-color:#003A5C"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="234" rx="42" ry="42" fill="url(#lr-grad)"/>
+  <text x="28" y="183" font-family="sans-serif" font-weight="300" font-size="152" fill="#31A8FF">Lr</text>
+</svg>
