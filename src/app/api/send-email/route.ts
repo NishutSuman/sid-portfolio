@@ -52,9 +52,12 @@ export async function POST(req: NextRequest) {
     const resend = new Resend(apiKey);
 
     const { data, error } = await resend.emails.send({
-      from: "From Portfolio <contact@itsniloy.me>",
-      to: ["contact.niloybhowmick@gmail.com"],
-      subject: `New Message from Portfolio - ${projectType || "General Inquiry"}`,
+      // FROM must be a Resend-verified domain. Using Resend's default sandbox
+      // sender for now; swap to e.g. "Sidhartha Sahoo <contact@yourdomain.com>"
+      // once your domain is verified in the Resend dashboard.
+      from: "Sidhartha Sahoo Portfolio <onboarding@resend.dev>",
+      to: ["mastersidhh@gmail.com"],
+      subject: `New Portfolio Inquiry - ${projectType || "General"}`,
       react: EmailTemplate({ name, email, message, projectType, timeline }),
     });
 
